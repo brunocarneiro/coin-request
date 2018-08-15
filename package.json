@@ -8,12 +8,15 @@
   },
   "scripts": {
     "test": "jest",
-    "test:debug": "node --inspect --debug-brk  node_modules/.bin/jest --runInBand -i"
+    "test:debug": "node --inspect --debug-brk  node_modules/.bin/jest --runInBand -i",
+    "server": "node src/endpoints",
+    "server:debug": "node --inspect-brk src/endpoints"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bitgo": "^4.33.1",
+    "express": "^4.16.3",
     "request": "^2.88.0"
   },
   "devDependencies": {
