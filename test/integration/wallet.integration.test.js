@@ -1,10 +1,10 @@
-let BitGoSession = require('../../src/bitgo/BitGoSession');
+const BitGoSession = require('../../src/bitgo/BitGoSession');
+const {TEST_TIMEOUT} = require('./constants');
 
-let bitGoSession = new BitGoSession();
+const bitGoSession = new BitGoSession();
 bitGoSession.openSession();
 
 beforeAll(() => {
-  console.log("Setting new Timeout")
   jest.setTimeout(TEST_TIMEOUT);
 });
 
@@ -14,7 +14,9 @@ function testCreateWallet(){
   test('wallet creation successfully', (done) => {
     let walletsManager = bitGoSession.wallets();
     let label = "Test Wallet " + Date.now();
-    console.log(label)
+
+    console.log("Creating wallet named: " + label);
+
     walletsManager.create({
       label
     }).then((wallet)=>{
@@ -22,12 +24,15 @@ function testCreateWallet(){
       expect(wallet.backupKeychain).toBeDefined();
       expect(wallet.bitgoKeychain).toBeDefined();
       expect(wallet.wallet).toBeDefined();
+      console.log("Created wallet named: " + label);
+      
+      console.log("Freezing it");
       walletsManager.freeze(wallet).then((freeze)=>{
-        console.log(freeze);
+        console.log("Wallet frozen", freeze);
         expect(freeze).toBeDefined();
         done();
       }).catch((e)=>{
-        console.error(e);
+        console.error("Error creating wallet", e);
         expect("Passed here").toBe("should not passed here");
         done();
       });
@@ -43,7 +48,7 @@ function testCreateWallet(){
 function testFreezeWallet(wallet){
   test('freezing wallet successfully', (done) => {
     bitGoSession.wallets().freeze(wallet).then((freeze)=>{
-      console.log(freeze);
+      console.log("Wallet frozen", freeze);
       expect(freeze).toBeDefined();
       done();
     }).catch((e)=>{
@@ -58,19 +63,3 @@ function suite(){
 }
 
 suite();
-
-// function c(){
-//   let walletsManager = bitGoSession.wallets();
-//   let label = "Test Wallet " + Date.now();
-//   walletsManager.create({
-//     label
-//   }).then((wallet)=>{
-//     walletsManager.freeze(wallet).then((freeze)=>{
-//       console.log(freeze)
-//     }).catch((e)=>{
-//       console.error(e);
-//     });
-//   }).catch((e)=>{
-//     console.error(e);
-//   });
-// }

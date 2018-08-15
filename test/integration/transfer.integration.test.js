@@ -1,12 +1,11 @@
-let BitGoSession = require('../../src/bitgo/BitGoSession');
-let {TEST_TIMEOUT} = require('./constants');
-let { RICH_WALLET_ID, POOR_WALLET_ADDRESS } = require('../../src/constants');
+const BitGoSession = require('../../src/bitgo/BitGoSession');
+const {TEST_TIMEOUT} = require('./constants');
+const { RICH_WALLET_ID, POOR_WALLET_ADDRESS } = require('../../src/constants');
 
-let bitGoSession = new BitGoSession();
+const bitGoSession = new BitGoSession();
 bitGoSession.openSession();
 
 beforeAll(() => {
-  console.log("Setting new Timeout")
   jest.setTimeout(TEST_TIMEOUT);
 });
 
@@ -25,11 +24,3 @@ test('successfull transaction', (done) => {
 });
 
 debugger;
-
-// function insufficientFunds(){
-//   bitGoSession.transfers().send({from: RICH_WALLET_ID, to: POOR_WALLET_ADDRESS}).then(()=>{
-//     console.log("Sucesso");
-//   }).catch((e)=>{
-//     console.error(e);
-//   })
-// }
