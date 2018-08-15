@@ -1,3 +1,7 @@
+# Project files
+constants.js
+requestCoins.js
+
 # Logs
 logs
 *.log
