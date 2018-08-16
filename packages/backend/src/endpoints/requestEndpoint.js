@@ -2,19 +2,23 @@ const BitGoSession = require('../bitgo/BitGoSession');
 
 function requestEndpoint(req, resp){
 
+  if(req.method && req.method.toUpperCase() === 'OPTIONS') {
+    return prepareResponse(resp, 200).send();
+  }
+
   let params = req.query;
   let validationMessage = validateRequest(params);
   if(validationMessage == true){
     let bitGoSession = new BitGoSession();
     bitGoSession.openSession();
     bitGoSession.transfers().send({to: params.address}).then((transfer)=>{
-      resp.status(200).send({success: transfer});
+      prepareResponse(resp, 200, {success: transfer});
     }).catch((e)=>{
       console.error(e);
-      resp.status(500).send(e);
+      prepareResponse(resp, 500, e);
     });
   } else {
-    resp.status(400).send({error: validationMessage});
+    prepareResponse(resp, 400, {error: validationMessage});
   }
 }
 
@@ -23,6 +27,13 @@ function validateRequest(params){
     return "Address is a required parameter";
   }
   return true;
+}
+
+function prepareResponse(res, status, body){
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-access-token');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, OPTIONS, DELETE');
+  res.status(status).send(body);
 }
 
 module.exports = requestEndpoint;
