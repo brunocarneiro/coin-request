@@ -1,5 +1,5 @@
 const BitGoSession = require('../../src/bitgo/BitGoSession');
-const {TEST_TIMEOUT} = require('./constants');
+const {TEST_TIMEOUT} = require('./integrationConstants.js');
 
 const bitGoSession = new BitGoSession();
 bitGoSession.openSession();
