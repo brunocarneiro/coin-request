@@ -23,6 +23,8 @@
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-scripts": "latest"
+    "react-scripts": "latest",
+    "enzyme": "^3.4.2",
+    "enzyme-adapter-react-16": "^1.2.0"
   }
 }
