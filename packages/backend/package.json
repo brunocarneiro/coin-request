@@ -21,5 +21,8 @@
   },
   "devDependencies": {
     "jest": "^23.5.0"
+  },
+  "jest": {
+    "modulePathIgnorePatterns": [".*integrationConstants.*", ".*bitgoTestConstants.*"]
   }
 }

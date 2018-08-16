@@ -8,6 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import withRoot from '../withRoot';
 import { REST_API_URL } from '../constants';
+import apiFetcher from '../services/ApiFetcher';
 
 const styles = theme => ({
   root: {
@@ -20,26 +21,33 @@ const styles = theme => ({
 });
 
 class InputAddress extends React.Component {
-  state = {
-    loading: false,
-    walletAddress: "",
-    message: "We send you TETH!"
-  };
+  
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      loading: false,
+      walletAddress: "",
+      message: "We send you TETH!"
+    };
+  }
 
-  handleClick = () => {
+  handleClick(){
+
+    if(!this.state.walletAddress){
+      return this._handleError({message: "Address is required!"});
+    }
+
     this.state.loading = true;
     this.setState(this.state);
-    fetch(`${REST_API_URL}/request?address=${this.state.walletAddress}`,
-      {
-        method: "POST", headers: {"Content-Type": "application/json; charset=utf-8"},
-      }
-    ).then((result)=>{
+
+    apiFetcher.request(this.state.walletAddress).then((result)=>{
       result.json().then((result)=>{
         this.state.loading = false;
         if(result && result.success && result.success.txid){
           this.state.success = result.success.txid;
         } else {
-          this.state.error = "Unexpected server response."; 
+          this.state.error = (result && result.result && result.result.error) || 
+            (result && result.error) || "Unexpected server response."; 
         }
         this.setState(this.state);
       }).catch((e)=>{
@@ -48,7 +56,7 @@ class InputAddress extends React.Component {
     }).catch((e)=>{
       this._handleError(e);
     });
-  };
+  }
 
   _handleError(e){
     this.state.loading = false;
@@ -74,10 +82,10 @@ class InputAddress extends React.Component {
     } else if(this.state.success){
       content = (
         <div className={classes.root}>
-          <Typography variant="title">
+          <Typography className="success-message" variant="title">
             TETH sent successfuly!
           </Typography>
-          <Typography variant="subtitle">
+          <Typography variant="subheading">
             <a href={`https://kovan.etherscan.io/tx/${this.state.success}`}>Check transaction here</a>
           </Typography>
         </div>
@@ -88,7 +96,7 @@ class InputAddress extends React.Component {
           <Typography variant="title">
             Error when tried to send a new transaction
           </Typography>
-          <Typography variant="subtitle">
+          <Typography variant="subheading" className="error-message">
             {this.state.error}
           </Typography>
           <Button variant="contained" color="secondary" onClick={()=>{window.location=window.location}}>
@@ -107,16 +115,16 @@ class InputAddress extends React.Component {
             </Grid>
             <Grid item xs={12} sm={12}>
               <TextField
-                id="name"
+                id="walletAddress"
                 label="Type your wallet address"
                 className={classes.textField}
-                value={this.state.name}
+                value={this.state.walletAddress}
                 onChange={this.handleAddressChange.bind(this)}
                 margin="normal"
               />
             </Grid>
             <Grid item xs={12} sm={12}>
-              <Button variant="contained" color="secondary" onClick={this.handleClick}>
+              <Button id="send-button" variant="contained" color="secondary" onClick={this.handleClick.bind(this)}>
                 Send me TETH
               </Button>
             </Grid>
