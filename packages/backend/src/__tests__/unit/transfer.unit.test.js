@@ -1,4 +1,4 @@
-let TransfersManager = require('../../src/bitgo/TransfersManager');
+let TransfersManager = require('../../bitgo/TransfersManager');
 
 test('10% balance calculation using eth wallet', (done) => {
   let tenPercent = TransfersManager._getTenPercentOfBalance(mockEthWallet());
