@@ -1,5 +1,5 @@
 # Project files
-constants.js
+bitgoConstants.js
 requestCoins.js
 
 # Logs
