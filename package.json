@@ -10,7 +10,8 @@
     "test": "cd packages/frontend; npm run test; cd ../backend; npm run test",
     "test:debug": "node --inspect --debug-brk  node_modules/.bin/jest --runInBand -i",
     "server": "node src/endpoints",
-    "server:debug": "node --inspect-brk src/endpoints"
+    "server:debug": "node --inspect-brk src/endpoints",
+    "deploy": "cd packages/frontend/; npm run deploy; cd ../backend; npm run deploy;"
   },
   "author": "",
   "license": "ISC",
