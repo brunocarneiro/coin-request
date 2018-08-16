@@ -10,5 +10,3 @@ module.exports.POOR_WALLET_ADDRESS = "0x0d591555c94d73558b39f902c60c2f613d46ea20
 module.exports.WALLET_PASSPHRASE = "secretpassphrase1a5df8380e0e30";
 module.exports.ENTERPRISE_ID = "5b71f4e6fe607f8f03b80831a7864ed6";
 
-module.exports.SERVER_LISTEN_PORT = 3000;
-

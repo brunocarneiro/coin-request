@@ -1,4 +1,4 @@
-const { WALLET_PASSPHRASE, ENTERPRISE_ID } = require('../constants');
+const { WALLET_PASSPHRASE, ENTERPRISE_ID } = require('../bitgoConstants');
 
 class WalletsManager{
 
