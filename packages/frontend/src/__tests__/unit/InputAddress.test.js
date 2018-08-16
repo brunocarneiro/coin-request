@@ -1,9 +1,8 @@
-// Link.react.test.js
 import React from 'react';
 import Enzyme, {mount, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import InputAddress from '../../pages/InputAddress';
+import RequestFaucetView from '../../pages/RequestFaucetView';
 import apiFetcher from '../../services/ApiFetcher';
 
 beforeAll(function() {
@@ -12,7 +11,7 @@ beforeAll(function() {
 });
 
 test('Address is required must display when submits and no address is filled', () => {
-  const page = mount(<InputAddress />);
+  const page = mount(<RequestFaucetView />);
   const button = page.find("button");
   expect(button.length).toBe(1);
   button.simulate('click');
@@ -23,7 +22,7 @@ test('Address is required must display when submits and no address is filled', (
 
 test('request coin api and it answered successfuly', (done) => {
   mockApiFetcherWithSuccess();
-  const page = mount(<InputAddress />);
+  const page = mount(<RequestFaucetView />);
   let walletAddressVal = "1234";
   const input = page.find('input');
   expect(input.length).toBe(1);
@@ -46,7 +45,7 @@ test('request coin api and it answered successfuly', (done) => {
 
 test('display error message when request api does not succeed well', (done) => {
   mockApiFetcherWithError();
-  const page = mount(<InputAddress />);
+  const page = mount(<RequestFaucetView />);
   let walletAddressVal = "1234";
   const input = page.find('input');
   expect(input.length).toBe(1);
@@ -69,7 +68,7 @@ test('display error message when request api does not succeed well', (done) => {
 
 test('bad request', (done) => {
   mockApiFetcherWithResponseError();
-  const page = mount(<InputAddress />);
+  const page = mount(<RequestFaucetView />);
   let walletAddressVal = "1234";
   const input = page.find('input');
   expect(input.length).toBe(1);

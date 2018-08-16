@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import InputAddress from './pages/InputAddress';
+import RequestFaucetView from './pages/RequestFaucetView';
 
-ReactDOM.render(<InputAddress />, document.querySelector('#root'));
+ReactDOM.render(<RequestFaucetView />, document.querySelector('#root'));

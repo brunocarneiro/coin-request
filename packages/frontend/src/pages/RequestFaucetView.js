@@ -20,7 +20,7 @@ const styles = theme => ({
   }
 });
 
-class InputAddress extends React.Component {
+class RequestFaucetView extends React.Component {
   
   constructor(props, context) {
     super(props, context);
@@ -137,4 +137,4 @@ class InputAddress extends React.Component {
   }
 }
 
-export default withRoot(withStyles(styles)(InputAddress));
+export default withRoot(withStyles(styles)(RequestFaucetView));
