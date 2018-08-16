@@ -11,7 +11,8 @@
     "test:debug": "node --inspect --debug-brk  node_modules/.bin/jest --runInBand -i",
     "server": "node src/endpoints",
     "start": "node src/endpoints",
-    "server:debug": "node --inspect-brk src/endpoints"
+    "server:debug": "node --inspect-brk src/endpoints",
+    "deploy": "gcloud beta functions deploy requestEndpoint --stage-bucket faucet-giver-api --trigger-http --project faucet-giver-213520"
   },
   "author": "",
   "license": "ISC",
