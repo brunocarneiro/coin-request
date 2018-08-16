@@ -1,6 +1,7 @@
 # Project files
 bitgoConstants.js
 requestCoins.js
+packages/frontend/build
 
 # Logs
 logs
