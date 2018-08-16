@@ -1,1 +1,5 @@
 language: node_js
+node_js:
+  - "7"
+before_install:
+  - cp ./test/testConstants.js ./src/constants.js
