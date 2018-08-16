@@ -1,0 +1,2 @@
+module.exports.LOW_FUNDS_WALLET_ID = "5b735c639c1c4e890311164f2d9b3560";
+module.exports.TEST_TIMEOUT = 30000;
