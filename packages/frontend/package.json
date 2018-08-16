@@ -1,5 +1,5 @@
 {
-  "name": "coin-request-web-app",
+  "name": "coin-request-frontend",
   "version": "1.0.0",
   "private": true,
   "dependencies": {

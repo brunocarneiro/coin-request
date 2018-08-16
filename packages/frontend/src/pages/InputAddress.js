@@ -31,18 +31,30 @@ class InputAddress extends React.Component {
     this.setState(this.state);
     fetch(`${REST_API_URL}/request?address=${this.state.walletAddress}`,
       {
-        method: "GET", headers: {"Content-Type": "application/json; charset=utf-8"},
+        method: "POST", headers: {"Content-Type": "application/json; charset=utf-8"},
       }
     ).then((result)=>{
-      this.state.loading = false;
-      this.state.success = result;
-      this.setState(this.state);
+      result.json().then((result)=>{
+        this.state.loading = false;
+        if(result && result.success && result.success.txid){
+          this.state.success = result.success.txid;
+        } else {
+          this.state.error = "Unexpected server response."; 
+        }
+        this.setState(this.state);
+      }).catch((e)=>{
+        this._handleError(e);
+      });
     }).catch((e)=>{
-      this.state.loading = false;
-      this.state.error = e;
-      this.setState(this.state);
+      this._handleError(e);
     });
   };
+
+  _handleError(e){
+    this.state.loading = false;
+    this.state.error = e && e.message ? e.message : "Unexpected error"; 
+    this.setState(this.state);
+  }
 
   handleAddressChange(event){
     this.state.walletAddress = event.target.value;
@@ -65,14 +77,23 @@ class InputAddress extends React.Component {
           <Typography variant="title">
             TETH sent successfuly!
           </Typography>
+          <Typography variant="subtitle">
+            <a href={`https://kovan.etherscan.io/tx/${this.state.success}`}>Check transaction here</a>
+          </Typography>
         </div>
       );
     } else if(this.state.error){
       content = (
         <div className={classes.root}>
           <Typography variant="title">
+            Error when tried to send a new transaction
+          </Typography>
+          <Typography variant="subtitle">
             {this.state.error}
           </Typography>
+          <Button variant="contained" color="secondary" onClick={()=>{window.location=window.location}}>
+            Try again
+          </Button>
         </div>
       );
     } else {

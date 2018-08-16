@@ -1,10 +1,10 @@
 {
-  "name": "coin-request",
+  "name": "coin-request-backend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=6.0.0"
   },
   "scripts": {
     "test": "jest",
@@ -14,15 +14,12 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "bitgo": "^4.33.1",
     "express": "^4.16.3",
-    "request": "^2.88.0",
-    "jest": "^23.5.0",
-    "@material-ui/core": "latest",
-    "prop-types": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "react-scripts": "latest"
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "jest": "^23.5.0"
   }
 }
