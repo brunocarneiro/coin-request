@@ -1,4 +1,4 @@
-const {ACCESS_TOKEN, RICH_WALLET_ADDRESS, RICH_WALLET_ID, WALLET_PASSPHRASE, ENTERPRISE_ID} = require('../constants');
+const { RICH_WALLET_ID, WALLET_PASSPHRASE } = require('../bitgoConstants');
 
 class TransfersManager {
 
