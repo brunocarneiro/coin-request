@@ -75,6 +75,7 @@ class RequestFaucetView extends React.Component {
     this.loadingMessagesIndex=1;
     this.loadingMessagesInterval = setInterval(()=>{
       this.state.loadingMessage = messages[this.loadingMessagesIndex%messages.length];
+      this.loadingMessagesIndex++;
       this.setState(this.state);
     }, 2000);
   }
