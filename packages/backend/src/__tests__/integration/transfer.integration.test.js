@@ -1,4 +1,4 @@
-const BitGoSession = require('../../bitgo/BitGoSession');
+const BitGoSession = require('../../services/bitgo/BitGoSession');
 const {TEST_TIMEOUT} = require('./integrationConstants');
 const { RICH_WALLET_ID, POOR_WALLET_ADDRESS } = require('../bitgoTestConstants');
 

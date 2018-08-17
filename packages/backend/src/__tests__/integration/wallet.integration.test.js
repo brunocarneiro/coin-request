@@ -1,4 +1,4 @@
-const BitGoSession = require('../../bitgo/BitGoSession');
+const BitGoSession = require('../../services/bitgo/BitGoSession');
 const {TEST_TIMEOUT} = require('./integrationConstants.js');
 
 const bitGoSession = new BitGoSession();
