@@ -31,15 +31,15 @@ Then, create a file called secureConstants in the directory packages/backend/src
 ### Frontend
 ```
   cd packages/frontend;
-  npm run start
+  npm run start;
 ```
 
 ### Backend
 ```
   cd packages/backend;
-  npm run start
+  npm run start;
 ```
 ### Tests
 ```
-  npm run test
+  npm run test;
 ```
