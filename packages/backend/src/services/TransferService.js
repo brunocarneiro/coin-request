@@ -1,5 +1,5 @@
 const civicService = require('./CivicService');
-const BitGoSession = require('../bitgo/BitGoSession');
+const BitGoSession = require('./bitgo/BitGoSession');
 
 class TransferService {
   transfer({auth, address}){
