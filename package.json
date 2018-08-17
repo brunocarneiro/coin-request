@@ -1,0 +1,31 @@
+{
+  "name": "coin-request",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "scripts": {
+    "test": "cd packages/frontend; npm run test; cd ../backend; npm run test",
+    "test:debug": "node --inspect --debug-brk  node_modules/.bin/jest --runInBand -i",
+    "server": "node src/endpoints",
+    "server:debug": "node --inspect-brk src/endpoints",
+    "deploy": "cd packages/frontend/; npm run deploy; cd ../backend; npm run deploy;"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "bitgo": "^4.33.1",
+    "express": "^4.16.3",
+    "request": "^2.88.0",
+    "jest": "^23.5.0",
+    "@material-ui/core": "latest",
+    "prop-types": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-scripts": "latest",
+    "enzyme": "^3.4.2",
+    "enzyme-adapter-react-16": "^1.2.0"
+  }
+}

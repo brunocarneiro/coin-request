@@ -1,3 +1,7 @@
 language: node_js
 node_js:
-  - "7"
+  - "8"
+before_install:
+  - cp ./packages/backend/src/__tests__/bitgoTestConstants.js ./packages/backend/src/secureConstants.js
+
+script: npm run test
