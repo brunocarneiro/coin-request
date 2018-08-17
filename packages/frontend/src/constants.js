@@ -8,3 +8,5 @@ if(host.indexOf("localhost")>=0 || host.indexOf("127.0.0.1")>=0){
 }
 
 export const REST_API_URL = restApiUrl;
+
+export const CIVIC_APP_ID = "Bf6u8Eo87";

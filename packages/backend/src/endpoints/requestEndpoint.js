@@ -1,4 +1,4 @@
-const BitGoSession = require('../bitgo/BitGoSession');
+const transferService = require('../services/TransferService');
 
 function requestEndpoint(req, resp){
 
@@ -9,9 +9,7 @@ function requestEndpoint(req, resp){
   let params = req.query;
   let validationMessage = validateRequest(params);
   if(validationMessage == true){
-    let bitGoSession = new BitGoSession();
-    bitGoSession.openSession();
-    bitGoSession.transfers().send({to: params.address}).then((transfer)=>{
+    transferService.transfer(params).then((transfer)=>{
       prepareResponse(resp, 200, {success: transfer});
     }).catch((e)=>{
       console.error(e);
@@ -25,6 +23,9 @@ function requestEndpoint(req, resp){
 function validateRequest(params){
   if(!params.address){
     return "Address is a required parameter";
+  }
+  if(!params.auth){
+    return "You must authenticate using Civic app";
   }
   return true;
 }

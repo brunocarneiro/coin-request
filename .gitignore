@@ -1,5 +1,5 @@
 # Project files
-bitgoConstants.js
+secureConstants.js
 requestCoins.js
 packages/frontend/build
 

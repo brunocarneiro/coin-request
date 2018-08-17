@@ -1,6 +1,6 @@
 const BitGoJS = require('bitgo');
 
-const { ACCESS_TOKEN } = require('../bitgoConstants');
+const { ACCESS_TOKEN } = require('../secureConstants');
 const WalletsManager = require('./WalletsManager');
 const TransfersManager = require('./TransfersManager');
 
